@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>记录第一个Bug</title>
-    <url>/gxy-2001.github.io/2020/07/15/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
-    <content><![CDATA[<h2 id="Github中仓库名不能有大写！"><a href="#Github中仓库名不能有大写！" class="headerlink" title="Github中仓库名不能有大写！"></a>Github中仓库名不能有大写！</h2><a id="more"></a>
+    <title>记录一个Bug</title>
+    <url>/gxy-2001.github.io/2020/07/15/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%AABug/</url>
+    <content><![CDATA[<h2 id="GitHub的仓库名不要有大写！"><a href="#GitHub的仓库名不要有大写！" class="headerlink" title="GitHub的仓库名不要有大写！"></a>GitHub的仓库名不要有大写！</h2><a id="more"></a>
 
 <p>当你想使用git pages来构建自己的博客时，你应该用 yourname.github.io 的形式建立一个仓库，然而你的名字可能有大写，git pages识别不出来，改成小写就好啦</p>
 <hr>
@@ -13,7 +13,7 @@
         <category>TEST</category>
       </categories>
       <tags>
-        <tag>记录第一个Bug - 导航 - 分享</tag>
+        <tag>-分享</tag>
       </tags>
   </entry>
 </search>
