@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>二叉树的迭代遍历方式</title>
+    <url>/gxy-2001.github.io/2020/10/01/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%BF%AD%E4%BB%A3%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="二叉树的迭代遍历方式"><a href="#二叉树的迭代遍历方式" class="headerlink" title="二叉树的迭代遍历方式"></a>二叉树的迭代遍历方式</h2><a id="more"></a>
+
+<p>​        本文解决的问题：<a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="noopener">leetcode94:中序遍历二叉树</a></p>
+<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>​        二叉树的遍历主要都是递归方式，分前序，中序和后序三种。</p>
+<p>​        递归的思想：以中序遍历为例，在处理一个节点时</p>
+<p>​                1.先处理左节点</p>
+<p>​                2.对自身进行处理</p>
+<p>​                3.处理右节点</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//递归遍历的二叉树框架 : </span></span><br><span class="line">   <span class="comment">//根据处理root的位置不同分三种遍历方式</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(TreeNode root)</span> </span>&#123;        </span><br><span class="line">   	<span class="comment">//前序遍历:在这里处理root</span></span><br><span class="line">   	traverse(root.left);</span><br><span class="line">       <span class="comment">//中序遍历:在这处理root</span></span><br><span class="line">   	traverse(root.right);</span><br><span class="line">       <span class="comment">//后序遍历:在这处理root</span></span><br><span class="line">	&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">//套用上面的框架，很容易得出答案</span></span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">       List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">               <span class="keyword">return</span> res;</span><br><span class="line">           &#125;</span><br><span class="line">           inorderTraversal(root.left);</span><br><span class="line">           res.add(root.val);</span><br><span class="line">           inorderTraversal(root.right);</span><br><span class="line">           <span class="keyword">return</span> res;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        那么现在问题来了，如何使用迭代的方式遍历二叉树</p>
+<p>​        而且还要易于理解，并且只需要改很少的一部分就可以实现三种遍历方式</p>
+<h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><p>​        一种神奇的算法出现了</p>
+<p>​        基于栈的思想，我们使用一个栈来存储需要输出的结果</p>
+<p>​            先将root压栈，然后不断的处理栈顶元素</p>
+<p>​                如果他是节点：巧妙的改一下思路</p>
+<p>​                        如果有左节点就处理左节点，要不就不处理；然后处理自己(就是把数字入栈)；右节点同左节点</p>
+<p>​                如果他是数字：输出</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">          Stack&lt;Object&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">          stack.push(root);</span><br><span class="line">          List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">          <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">              <span class="keyword">return</span> res;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">              Object o = stack.pop();</span><br><span class="line">              <span class="keyword">if</span> (o <span class="keyword">instanceof</span> TreeNode) &#123;</span><br><span class="line">                  TreeNode now = (TreeNode)o;</span><br><span class="line">                  <span class="keyword">if</span> (now.right != <span class="keyword">null</span>) stack.push(now.right);</span><br><span class="line">                  stack.push(now.val);</span><br><span class="line">                  <span class="keyword">if</span> (now.left != <span class="keyword">null</span>) stack.push(now.left);</span><br><span class="line">              &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                  res.add((<span class="keyword">int</span>) o);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">return</span> res;</span><br><span class="line"> 	 &#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后还要注意下：</p>
+<p>​        栈是后入先出的结构，如果我们要中序遍历，就是左，中，右输出</p>
+<p>​        那么入栈顺序就要倒序，先入右，再中，再左</p>
+<p><a href="https://labuladong.gitbook.io/algo/shu-ju-jie-gou-xi-lie/er-cha-sou-suo-shu-cao-zuo-ji-jin" target="_blank" rel="noopener">框架出处</a></p>
+<p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/yan-se-biao-ji-fa-yi-chong-tong-yong-qie-jian-ming/" target="_blank" rel="noopener">算法出处，注意看评论区</a></p>
+]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>记录一个Bug</title>
     <url>/gxy-2001.github.io/2020/07/15/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%AABug/</url>
     <content><![CDATA[<h2 id="GitHub的仓库名不要有大写！"><a href="#GitHub的仓库名不要有大写！" class="headerlink" title="GitHub的仓库名不要有大写！"></a>GitHub的仓库名不要有大写！</h2><a id="more"></a>
@@ -15,43 +52,6 @@
       <tags>
         <tag>分享</tag>
         <tag>DeBug</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>二叉树的迭代遍历方式</title>
-    <url>/gxy-2001.github.io/2020/10/01/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%BF%AD%E4%BB%A3%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/</url>
-    <content><![CDATA[<h2 id="二叉树的迭代遍历方式"><a href="#二叉树的迭代遍历方式" class="headerlink" title="二叉树的迭代遍历方式"></a>二叉树的迭代遍历方式</h2><a id="more"></a>
-
-<p>​    本文解决的问题：<a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/" target="_blank" rel="noopener">leetcode94:中序遍历二叉树</a></p>
-<h4 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h4><p>​    二叉树的遍历主要都是递归方式，分前序，中序和后序三种。</p>
-<p>​    递归的思想：以中序遍历为例，在处理一个节点时</p>
-<p>​        1.先处理左节点</p>
-<p>​        2.对自身进行处理</p>
-<p>​        3.处理右节点</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">//递归遍历的二叉树框架 : </span></span><br><span class="line">   <span class="comment">//根据处理root的位置不同分三种遍历方式</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverse</span><span class="params">(TreeNode root)</span> </span>&#123;        </span><br><span class="line">   	<span class="comment">//前序遍历:在这里处理root</span></span><br><span class="line">   	traverse(root.left);</span><br><span class="line">       <span class="comment">//中序遍历:在这处理root</span></span><br><span class="line">   	traverse(root.right);</span><br><span class="line">       <span class="comment">//后序遍历:在这处理root</span></span><br><span class="line">	&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">//套用上面的框架，很容易得出答案</span></span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">       List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">           <span class="keyword">if</span>(root==<span class="keyword">null</span>)&#123;</span><br><span class="line">               <span class="keyword">return</span> res;</span><br><span class="line">           &#125;</span><br><span class="line">           inorderTraversal(root.left);</span><br><span class="line">           res.add(root.val);</span><br><span class="line">           inorderTraversal(root.right);</span><br><span class="line">           <span class="keyword">return</span> res;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>​    那么现在问题来了，如何使用迭代的方式遍历二叉树</p>
-<p>​    而且还要易于理解，并且只需要改很少的一部分就可以实现三种遍历方式</p>
-<h4 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h4><p>​    一种神奇的算法出现了</p>
-<p>​    基于栈的思想，我们使用一个栈来存储需要输出的结果</p>
-<p>​        先将root压栈，然后不断的处理栈顶元素</p>
-<p>​            如果他是节点：巧妙的改一下思路</p>
-<p>​                    如果有左节点就处理左节点，要不就不处理；然后处理自己(就是把数字入栈)；右节点同左节点</p>
-<p>​            如果他是数字：输出</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">inorderTraversal</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">       Stack&lt;Object&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">       stack.push(root);</span><br><span class="line">       List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">       <span class="keyword">if</span> (root == <span class="keyword">null</span>) &#123;</span><br><span class="line">           <span class="keyword">return</span> res;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">           Object o = stack.pop();</span><br><span class="line">           <span class="keyword">if</span> (o <span class="keyword">instanceof</span> TreeNode) &#123;</span><br><span class="line">               TreeNode now = (TreeNode)o;</span><br><span class="line">               <span class="keyword">if</span> (now.right != <span class="keyword">null</span>) stack.push(now.right);</span><br><span class="line">               stack.push(now.val);</span><br><span class="line">               <span class="keyword">if</span> (now.left != <span class="keyword">null</span>) stack.push(now.left);</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               res.add((<span class="keyword">int</span>) o);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> res;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<p>最后还要注意下：</p>
-<p>​    栈是后入先出的结构，如果我们要中序遍历，就是左，中，右输出</p>
-<p>​    那么入栈顺序就要倒序，先入右，再中，再左</p>
-<p><a href="https://labuladong.gitbook.io/algo/shu-ju-jie-gou-xi-lie/er-cha-sou-suo-shu-cao-zuo-ji-jin" target="_blank" rel="noopener">框架出处</a></p>
-<p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/yan-se-biao-ji-fa-yi-chong-tong-yong-qie-jian-ming/" target="_blank" rel="noopener">算法出处，注意看评论区</a></p>
-]]></content>
-      <categories>
-        <category>算法</category>
-      </categories>
-      <tags>
-        <tag>分享</tag>
-        <tag>算法</tag>
       </tags>
   </entry>
 </search>
