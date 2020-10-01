@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>记录一个Bug</title>
+    <url>/gxy-2001.github.io/2020/07/15/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%AABug/</url>
+    <content><![CDATA[<h2 id="GitHub的仓库名不要有大写！"><a href="#GitHub的仓库名不要有大写！" class="headerlink" title="GitHub的仓库名不要有大写！"></a>GitHub的仓库名不要有大写！</h2><a id="more"></a>
+
+<p>当你想使用git pages来构建自己的博客时，你应该用 yourname.github.io 的形式建立一个仓库，然而你的名字可能有大写，git pages识别不出来，改成小写就好啦</p>
+<hr>
+<p>再见！</p>
+]]></content>
+      <categories>
+        <category>TEST</category>
+      </categories>
+      <tags>
+        <tag>分享</tag>
+        <tag>DeBug</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>二叉树的迭代遍历方式</title>
     <url>/gxy-2001.github.io/2020/10/01/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%BF%AD%E4%BB%A3%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/</url>
     <content><![CDATA[<h2 id="二叉树的迭代遍历方式"><a href="#二叉树的迭代遍历方式" class="headerlink" title="二叉树的迭代遍历方式"></a>二叉树的迭代遍历方式</h2><a id="more"></a>
@@ -27,7 +44,7 @@
 <p>​    栈是后入先出的结构，如果我们要中序遍历，就是左，中，右输出</p>
 <p>​    那么入栈顺序就要倒序，先入右，再中，再左</p>
 <p><a href="https://labuladong.gitbook.io/algo/shu-ju-jie-gou-xi-lie/er-cha-sou-suo-shu-cao-zuo-ji-jin" target="_blank" rel="noopener">框架出处</a></p>
-<p>[算法出处，注意看评论区](</p>
+<p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/yan-se-biao-ji-fa-yi-chong-tong-yong-qie-jian-ming/" target="_blank" rel="noopener">算法出处，注意看评论区</a></p>
 ]]></content>
       <categories>
         <category>算法</category>
@@ -35,23 +52,6 @@
       <tags>
         <tag>分享</tag>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>记录一个Bug</title>
-    <url>/gxy-2001.github.io/2020/07/15/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%AABug/</url>
-    <content><![CDATA[<h2 id="GitHub的仓库名不要有大写！"><a href="#GitHub的仓库名不要有大写！" class="headerlink" title="GitHub的仓库名不要有大写！"></a>GitHub的仓库名不要有大写！</h2><a id="more"></a>
-
-<p>当你想使用git pages来构建自己的博客时，你应该用 yourname.github.io 的形式建立一个仓库，然而你的名字可能有大写，git pages识别不出来，改成小写就好啦</p>
-<hr>
-<p>再见！</p>
-]]></content>
-      <categories>
-        <category>TEST</category>
-      </categories>
-      <tags>
-        <tag>分享</tag>
-        <tag>DeBug</tag>
       </tags>
   </entry>
 </search>
