@@ -26,7 +26,7 @@
 <p>最后还要注意下：</p>
 <p>​        栈是后入先出的结构，如果我们要中序遍历，就是左，中，右输出</p>
 <p>​        那么入栈顺序就要倒序，先入右，再中，再左</p>
-<p><a href="https://labuladong.gitbook.io/algo/shu-ju-jie-gou-xi-lie/er-cha-sou-suo-shu-cao-zuo-ji-jin" target="_blank" rel="noopener">框架出处</a></p>
+<p><a href="https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/xue-xi-shu-ju-jie-gou-he-suan-fa-de-gao-xiao-fang-fa" target="_blank" rel="noopener">框架出处</a></p>
 <p><a href="https://leetcode-cn.com/problems/binary-tree-inorder-traversal/solution/yan-se-biao-ji-fa-yi-chong-tong-yong-qie-jian-ming/" target="_blank" rel="noopener">算法出处，注意看评论区</a></p>
 ]]></content>
       <categories>
